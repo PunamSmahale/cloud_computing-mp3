@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  generateName: premium-service-img-
+spec:
+  backoffLimit: 5
+  template:
+    spec:
+      containers:
+      - name: mp3-classify
+        image: pmahale2/mp3:public
+        env:
+          - name: DATASET
+            value: "mnist"
+        resources:
+          requests:
+            cpu:  "0.9"
+      restartPolicy: Never
